@@ -4,7 +4,7 @@ eight one-bit full adders and connects them properly to build an eight-bit rippl
 module to test the eight-bit adder. Make sure to display your inputs, sum, and carry out. Your top module
 must have ten different inputs. Put one time unit delay between consecutive inputs. Place one module in one
 verilog file i.e., you will have three verilog files. As a hint, the module skeletons are given below.
-
+```
 module one_bit_full_adder (a, b, cin, sum, cout);
 
    input a;
@@ -19,7 +19,9 @@ module one_bit_full_adder (a, b, cin, sum, cout);
    ...
 
 endmodule
+```
 
+```
 module eight_bit_adder (x, y, carry_in, sum, carry_out);
 
    input [7:0] x;
@@ -39,7 +41,9 @@ module eight_bit_adder (x, y, carry_in, sum, carry_out);
    ...
 
 endmodule
+```
 
+```
 module eight_bit_adder_top;
 
    reg [7:0] A;
@@ -55,6 +59,7 @@ module eight_bit_adder_top;
    ...
 
 endmodule
+```
 
 [60 points] 2. Implement an eight-bit comparator using eight one-bit comparators. Just like the previous question,
 organize your design into three different modules. The top module should have ten test cases. For each test case,
