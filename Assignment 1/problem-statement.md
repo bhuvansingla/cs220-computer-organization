@@ -65,3 +65,8 @@ endmodule
 organize your design into three different modules. The top module should have ten test cases. For each test case,
 display the inputs and the three outputs (less, equal, greater). Choose your test cases to cover all three outputs.
 In this case also, you will have three verilog files.
+
+Submission: Submit your verilog files (three files for each question) named clearly. For example, you could name the
+files as follows: A1Q1_one_bit_full_adder.v, A1Q1_eight_bit_adder.v, A1Q1_eight_bit_adder_top.v, A1Q2_one_bit_comparator.v,
+A1Q2_eight_bit_comparator.v, A1Q2_eight_bit_comparator_top.v. Email the files as attachment to cs220spring2021submit@gmail.com.
+The subject line of the email MUST be the following (replace N by your group number): Assignment#1 submission for Group#N
