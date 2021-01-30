@@ -1,3 +1,5 @@
+# Assignment 2
+
 [30 points] 1. Implement a module for a 3-to-8 decoder. Implement another module for an 8-to-3 encoder. Implement a top module that instantiates a 3-to-8 decoder and an 8-to-3 encoder and connects them as follows. The decoder takes a three-bit input and feeds its outputs to the inputs of the encoder. It displays the decoder inputs and encoder outputs. Note that the displayed decoder inputs and encoder outputs must be identical. The top module must have all eight test cases.
 
 [35 points] 2. Implement an 8-to-3 priority encoder where priority is given to the least significant input position with a 1. For example, if the input is 10010000, the output would be 100 encoding the position of the least significant 1 in the input (leftmost bit is the most significant bit). Write a top module to test your encoder. You must have at least ten test cases separated by one time unit delay.
