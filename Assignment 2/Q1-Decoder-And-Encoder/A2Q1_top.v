@@ -4,7 +4,7 @@
 module top;
 
 reg [2:0] in;
-wire [0:7] decodedOut;
+wire [7:0] decodedOut;
 wire [2:0] encodedOut;
 
 decoder3to8 DECODER(in, decodedOut);
@@ -15,7 +15,7 @@ always @(in or decodedOut or encodedOut) begin
 end
 
 initial begin
-    $display("Format: Input: X2X1X0 | Decoded: Y0Y1Y2Y3Y4Y5Y6Y7 | Encoded: X2X1X0\n");
+    $display("Format: Input: X2X1X0 | Decoded: Y7Y6Y5Y4Y3Y2Y1Y0 | Encoded: X2X1X0\n");
     in = 3'b000;
     #1
     $display("\n");

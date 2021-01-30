@@ -1,7 +1,7 @@
 module decoder3to8(in, out);
 
 input [2:0] in;
-output wire [0:7] out;
+output wire [7:0] out;
 
 assign out[0] = ~in[2] & ~in[1] & ~in[0];
 assign out[1] = ~in[2] & ~in[1] & in[0];

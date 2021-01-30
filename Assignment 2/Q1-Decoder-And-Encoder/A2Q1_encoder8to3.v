@@ -1,6 +1,6 @@
 module encoder8to3(in, out);
 
-input [0:7] in;
+input [7:0] in;
 output wire [2:0] out;
 
 assign out[0] = in[1] | in[3] | in[5] | in[7];
