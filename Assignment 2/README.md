@@ -10,9 +10,9 @@
 
 Submission: Submit your verilog files named clearly. For example, you could name the files as follows:
 
-A2Q1_decoder3to8.v, A2Q1_encoder8to3.v, A2Q1_top.v
-A2Q2_priority_encoder3to8.v, A2Q2_top.v
-A2Q3_blink.v, A2Q3_top.v
-A2Q4_rotate.v, A2Q4_top.v
+A2Q1_decoder3to8.v, A2Q1_encoder8to3.v, A2Q1_top.v  
+A2Q2_priority_encoder3to8.v, A2Q2_top.v  
+A2Q3_blink.v, A2Q3_top.v  
+A2Q4_rotate.v, A2Q4_top.v  
 
 Email the files as attachment to cs220spring2021submit@gmail.com. The subject line of the email MUST be the following (replace N by your group number): Assignment#2 submission for Group#N
