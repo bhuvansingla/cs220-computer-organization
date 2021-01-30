@@ -11,7 +11,7 @@ decoder3to8 DECODER(in, decodedOut);
 encoder8to3 ENCODER(decodedOut, encodedOut);
 
 always @(in or decodedOut or encodedOut) begin
-    $display("Input: %b | Decoded: %b | Encoded: %b", in, decodedOut, encodedOut);
+    $display("Time : %d | Input: %b | Decoded: %b | Encoded: %b", $time, in, decodedOut, encodedOut);
 end
 
 initial begin
