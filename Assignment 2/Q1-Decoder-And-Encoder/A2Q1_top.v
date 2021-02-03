@@ -10,12 +10,11 @@ wire [2:0] encodedOut;
 decoder3to8 DECODER(in, decodedOut);
 encoder8to3 ENCODER(decodedOut, encodedOut);
 
-always @(in or decodedOut or encodedOut) begin
-    $display("Time : %d | Input: %b | Decoded: %b | Encoded: %b", $time, in, decodedOut, encodedOut);
+always @(in or encodedOut) begin
+    $display("Time : %d | Decoder Input: %b | Encoder Output: %b", $time, in, encodedOut);
 end
 
 initial begin
-    $display("Format: Input: X2X1X0 | Decoded: Y7Y6Y5Y4Y3Y2Y1Y0 | Encoded: X2X1X0\n");
     in = 3'b000;
     #1
     $display("\n");
