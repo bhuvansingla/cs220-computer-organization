@@ -21,6 +21,9 @@ initial begin
     end
 end
 
-
+initial begin
+    #3100000
+    $finish;
+end
 
 endmodule
