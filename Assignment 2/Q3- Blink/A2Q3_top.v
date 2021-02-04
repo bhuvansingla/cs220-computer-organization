@@ -13,11 +13,11 @@ end
 
 initial begin
     forever begin
-        clk = 0;
-        #5
         clk = 1;
         #5
         clk = 0;
+        #5
+        clk = 1;
     end
 end
 
