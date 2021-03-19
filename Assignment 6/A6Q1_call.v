@@ -1,88 +1,177 @@
-`include "./A6Q1_implement.v"
-module call(read1,read2,write,data,validity,readval1,readval2,clk,indicator);
+module call(read1, read2, write, data, cmd, clk, done);
+
     input [4:0] read1,read2,write;
-    input [15:0] data;
-    input [2:0] validity;
+    input signed [15:0] data;
+    input [2:0] cmd;
     input clk;
-    reg [15:0] temp;
-    output reg indicator;
-    reg [2:0] send;
-    output wire [15:0] readval1,readval2;
-    reg [4:0] counter=5'b0;
-    implement IMP(read1,read2,write,temp,send,readval1,readval2,clk);
+
+    output reg done;
+
+    reg [4:0] cycles = 5'b0;
+    reg signed [15:0] temp;
+
+    reg signed [15:0] readval1,readval2;
+    reg signed [15:0] registers[0:31];
+
+    initial begin
+        registers[0]=16'b0;
+        registers[1]=16'b0;
+        registers[2]=16'b0;
+        registers[3]=16'b0;
+        registers[4]=16'b0;
+        registers[5]=16'b0;
+        registers[6]=16'b0;
+        registers[7]=16'b0;
+        registers[8]=16'b0;
+        registers[9]=16'b0;
+        registers[10]=16'b0;
+        registers[11]=16'b0;
+        registers[12]=16'b0;
+        registers[13]=16'b0;
+        registers[14]=16'b0;
+        registers[15]=16'b0;
+        registers[16]=16'b0;
+        registers[17]=16'b0;
+        registers[18]=16'b0;
+        registers[19]=16'b0;
+        registers[20]=16'b0;
+        registers[21]=16'b0;
+        registers[22]=16'b0;
+        registers[23]=16'b0;
+        registers[24]=16'b0;
+        registers[25]=16'b0;
+        registers[26]=16'b0;
+        registers[27]=16'b0;
+        registers[28]=16'b0;
+        registers[29]=16'b0;
+        registers[30]=16'b0;
+        registers[31]=16'b0;
+    end
+
     always @(posedge clk) begin
-        if(validity==0) begin
-            send<=0;
-            counter<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
+
+        if(cmd==0) begin
+            if (cycles == 2) begin
+                registers[write]<=data;
+                cycles <= 0; 
+                #1
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end
+            cycles <= cycles + 1;
         end
-        else if(validity==1) begin
-            send<=1;
-            counter<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address = %b(%d) : Read Value = %b(%d) \n" ,$time, read1,read1,readval1,readval1);
+
+        else if(cmd==1) begin
+            if (cycles == 2) begin            
+                readval1<=registers[read1];
+                cycles <= 0;
+                #1
+                $display("Read Address: %d | Read Value: %d\n", read1, readval1);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end
+            cycles <= cycles + 1;
         end
-        else if(validity==2) begin
-            send<=2;
-            counter<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address1 = %b(%d) : Read Value1 = %b(%d) \n" ,$time, read1,read1,readval1,readval1);
-            $display("time: %d, address2 = %b(%d) : Read Value2 = %b(%d) \n" ,$time, read2,read2,readval2,readval2);
+
+        else if(cmd==2) begin
+            if (cycles == 2) begin
+
+                readval1<=registers[read1];
+                readval2<=registers[read2];
+                cycles <= 0;
+                #1
+                $display("Read Address 1 = %d | Read Value 1 = %d\n" ,read1, readval1);
+                $display("Read Address 2 = %d | Read Value 2 = %d\n" ,read2, readval2);
+                
+                done <= 1'b1;
+                done <= #1 1'b0;
+        
+            end
+            cycles <= cycles + 1;
         end
-        else if(validity==3) begin
-            send<=3;
-            counter<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address = %b(%d) : Read Value = %b(%d) \n" ,$time, read1,read1,readval1,readval1);
+
+        else if(cmd==3) begin
+            if (cycles == 2) begin
+                readval1<=registers[read1];
+                registers[write]<=data;
+                cycles <= 0;
+                #1
+                $display("Read Address = %d | Read Value = %d\n" , read1, readval1);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end
+            cycles <= cycles + 1;
         end
-        else if(validity==4) begin
-            send<=4;
-            counter<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address1 = %b(%d) : Read Value1 = %b(%d) \n" ,$time, read1,read1,readval1,readval1);
-            $display("time: %d, address2 = %b(%d) : Read Value2 = %b(%d) \n" ,$time, read2,read2,readval2,readval2);
+
+        else if(cmd==4) begin
+            if (cycles == 2) begin
+                readval1<=registers[read1];
+                readval2<=registers[read2];
+                registers[write]<=data;
+                cycles <= 0;
+                #1
+                $display("Read Address 1 = %d | Read Value 1 = %d\n" ,read1, readval1);
+                $display("Read Address 2 = %d | Read Value 2 = %d\n" ,read2, readval2);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end
+            cycles <= cycles + 1;
         end
-        else if(validity==5&&counter==0) begin
-            send<=2;
+       
+        else if(cmd == 5) begin
+             if (cycles == 2) begin
+                readval1<=registers[read1];
+                readval2<=registers[read2];
+            end
+            else if (cycles == 18) begin
+                temp<=readval1+readval2;
+            end
+            else if (cycles == 20) begin
+                registers[write]<=temp;
+                cycles <= 0;
+                #1
+                $display("Write Address = %d | Written Value = %d\n", write, temp);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end            
+            cycles<=cycles+1; 
         end
-        else if(validity==5&&counter==2) begin
-            temp<=readval1+readval2;
+
+        else if(cmd == 6) begin
+             if (cycles == 2) begin
+                readval1<=registers[read1];
+                readval2<=registers[read2];
+            end
+            else if (cycles == 18) begin
+                temp<=readval1-readval2;
+            end
+            else if (cycles == 20) begin
+                registers[write]<=temp;
+                cycles <= 0;
+                #1
+                $display("Write Address = %d | Written Value = %d\n", write, temp);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end            
+            cycles<=cycles+1; 
         end
-        else if(validity==5&&counter==18) begin 
-            send<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address = %b(%d) : Written Value = %b(%d) \n" ,$time, write,write,data,data);
-        end
-        else if(validity==6&&counter==0) begin
-            send<=2;
-        end
-        else if(validity==6&&counter==2) begin
-            temp<=readval1-readval2;
-        end
-        else if(validity==6&&counter==18) begin 
-            send<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address = %b(%d) : Written Value = %b(%d) \n" ,$time, write,write,data,data);
-        end
-         else if(validity==7&&counter==0) begin
-            send<=2;
-        end
-        else if(validity==7&&counter==2) begin
-            temp<=(readval1<<readval2);
-        end
-        else if(validity==7&&counter==18) begin 
-            send<=0;
-            indicator <= 1'b1;
-            indicator <= #1 1'b0;
-            $display("time: %d, address = %b(%d) : Written Value = %b(%d) \n" ,$time, write,write,data,data);
-        end
-        counter<=counter+1;
+
+        else if(cmd == 7) begin
+            if (cycles == 2) begin
+                readval1<=registers[read1];
+            end
+            else if (cycles == 18) begin
+                temp<=(readval1<<data);
+            end
+            else if (cycles == 20) begin
+                registers[write]<=temp;
+                cycles <= 0;
+                #1
+                $display("Write Address = %d | Written Value = %d\n", write, temp);
+                done <= 1'b1;
+                done <= #1 1'b0;
+            end
+            cycles<=cycles+1; 
+        end 
     end
 endmodule
