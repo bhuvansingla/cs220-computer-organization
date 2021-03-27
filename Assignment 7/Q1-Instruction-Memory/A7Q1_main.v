@@ -14,8 +14,8 @@ module main(clk, pc, r, i, j, three, four, five, six);
     
     wire [31:0] curr_inst;
     wire [5:0] curr_opcode;
-    wire [5:0] curr_rd;
-    wire [5:0] curr_rt;
+    wire [4:0] curr_rd;
+    wire [4:0] curr_rt;
 
     assign curr_inst = registers[pc];
     assign curr_opcode = curr_inst[31:26];

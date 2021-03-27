@@ -1,4 +1,4 @@
-`include "./A6Q1_main.v"
+`include "./A7Q1_main.v"
 
 module top;
 
