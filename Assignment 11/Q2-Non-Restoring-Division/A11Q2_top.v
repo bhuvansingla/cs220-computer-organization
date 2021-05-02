@@ -7,10 +7,10 @@ reg signed [6:0] len_dividend, len_divisor;
 reg clk, newInput;
 
 wire [31:0] quotient;
-wire signed [31:0] remainder;
+wire signed [32:0] remainder;
 
 wire done; 
-wire [4:0]numAdd, numSub;
+wire [5:0]numAdd, numSub;
 
 reg [3:0] test_case_num = 0;
 reg start;

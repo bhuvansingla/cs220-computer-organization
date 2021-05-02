@@ -7,9 +7,9 @@
     input clk, newInput;
 
     output reg [31:0] quotient = 0;
-    output reg signed [31:0] remainder;
+    output reg signed [32:0] remainder;
     output reg done = 1; 
-    output reg [4:0] numAdd = 0, numSub = 0;
+    output reg [5:0] numAdd = 0, numSub = 0;
 
     reg isFirstCycle = 1;
 
