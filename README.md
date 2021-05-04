@@ -10,3 +10,20 @@ Assignments have been completed using [Verilog HDL](https://en.wikipedia.org/wik
 
 ## Course Instructor 
 - [Dr. Mainak Chaudhuri](https://www.cse.iitk.ac.in/users/mainakc/)
+
+## Installation and Execution
+### Verilog 
+```bash
+# install verilog
+sudo apt update  
+sudo apt install verilog
+
+# compile
+iverilog <top_module.v> -o <output_file_name>
+
+# run
+./<output_file_name>
+```
+### SPIM
+Download from http://spimsimulator.sourceforge.net/
+
